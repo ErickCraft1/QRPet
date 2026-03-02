@@ -4,18 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QRPet</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-
-  <style>
-    body {
-      background-color: black;
-      color: white;
-    }
-    #downloadBtn {
-      display: none;
-      cursor: pointer;
-    }
-  </style>
   <script
     defer
     src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
@@ -26,48 +16,83 @@
   <script defer src="qrHandler.js"></script>
 
   <body>
-    <h1>Bienvenido a QRPet</h1>
-    <p>
-      Este proyecto es un generador y lector de códigos QR para mascotas.
-      Permite a los dueños de mascotas crear códigos QR personalizados que
-      contienen información importante sobre sus mascotas, como su nombre, raza,
-      edad, información de contacto del dueño y cualquier otra información
-      relevante. Además, el proyecto incluye una función de lectura de códigos
-      QR que permite a los usuarios escanear los códigos QR de las mascotas para
-      acceder rápidamente a la información almacenada en ellos. Esto puede ser
-      especialmente útil en caso de pérdida de la mascota, ya que cualquier
-      persona que encuentre al animal puede escanear el código QR para obtener
-      información de contacto y ayudar a reunificarlo con su dueño.
-    </p>
+    <main>
+      <header>
+        <h1>TAGNAME</h1>
+        <nav><a href="#como-funciona">¿Cómo funciona?</a></nav>
+      </header>
+      <section class="portada">
+        <p>
+          Más que una placa, un vínculo que te conecta con tu mascota cuando más
+          lo necesitas.
+        </p>
+        <figure>
+          <img
+            src="/img/img-qrPet.png"
+            alt="Hombre arrodillado tocando el collar de su perro en un parque"
+          />
+        </figure>
+      </section>
+      <section id="como-funciona">
+        <h2>¿Cómo funciona?</h2>
+        <p>
+          1. El dueño de la mascota ingresa su información de contacto y la
+          información de su mascota en el formulario.
+        </p>
+        <p>
+          2. Se genera un código QR único que contiene toda esta información.
+        </p>
+        <p>
+          3. El dueño puede descargar e imprimir el código QR para colocarlo en
+          el collar de su mascota.
+        </p>
+        <p>
+          4. En caso de que la mascota se pierda, cualquier persona que la
+          encuentre puede escanear el código QR con su teléfono para acceder a
+          la información del dueño y contactarlo rápidamente.
+        </p>
+      </section>
+      <form id="qrForm">
+        <fieldset>
+          <legend>Información de la mascota:</legend>
+          <label for="petName">Nombre de la mascota:</label>
+          <input type="text" id="petName" name="petName" required /><br /><br />
 
-    <form id="qrForm">
-      <label for="petName">Nombre de la mascota:</label>
-      <input type="text" id="petName" name="petName" /><br /><br />
+          <label for="petImg">Foto de la mascota:</label>
+          <input
+            type="file"
+            id="petImg"
+            name="petImg"
+            accept="image/*"
+            required
+          /><br /><br />
 
-      <label for="petImg">Foto de la mascota:</label>
-      <input
-        type="file"
-        id="petImg"
-        name="petImg"
-        accept="image/*"
-      /><br /><br />
+          <label for="petBreed">Raza:</label>
+          <input type="text" id="petBreed" name="petBreed" /><br /><br />
 
-      <label for="breed">Raza:</label>
-      <input type="text" id="petBreed" name="breed" /><br /><br />
+          <label for="petAge">Edad:</label>
+          <input type="number" id="petAge" name="petAge" /><br /><br />
+        </fieldset>
 
-      <label for="age">Edad:</label>
-      <input type="number" id="petAge" name="age" /><br /><br />
+        <fieldset>
+          <legend>Información del dueño:</legend>
+          <h2>Información de contacto del dueño:</h2>
+          <label for="ownerContact">Número:</label>
+          <input
+            type="tel"
+            id="ownerContact"
+            name="ownerContact"
+            required
+          /><br /><br />
+        </fieldset>
 
-      <h2>Información de contacto del dueño:</h2>
-      <label for="ownerContact">Número:</label>
-      <input type="tel" id="ownerContact" name="ownerContact" /><br /><br />
-
-      <input type="submit" value="Generar Código QR" />
-    </form>
-    <div>
-      <h2>Código QR generado:</h2>
-      <figure id="qrCodeContainer"></figure>
-      <button id="downloadBtn">Descargar QR</button>
-    </div>
+        <input type="submit" value="Generar Código QR" />
+      </form>
+      <div>
+        <h2>Código QR generado:</h2>
+        <figure id="qrCodeContainer"></figure>
+        <button id="downloadBtn">Descargar QR</button>
+      </div>
+    </main>
   </body>
 </html>

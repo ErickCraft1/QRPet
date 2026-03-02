@@ -1,0 +1,215 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Layout base */
+main {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+nav a {
+  text-decoration: none;
+  color: #22c55e;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+/* Hero */
+.portada {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 0;
+  gap: 40px;
+}
+
+.portada p {
+  font-size: 1.4rem;
+  max-width: 500px;
+}
+
+.portada img {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Section titles */
+section h2,
+article h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* How it works */
+article {
+  padding: 60px 0;
+}
+
+article p {
+  margin-bottom: 16px;
+  max-width: 800px;
+}
+
+/* Form section */
+form {
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 20px;
+  margin-top: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: #334155;
+  color: white;
+}
+
+form input:focus {
+  border: 2px solid #22c55e;
+}
+
+form input[type="submit"] {
+  background: #22c55e;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+form input[type="submit"]:hover {
+  background: #16a34a;
+}
+
+/* QR Section */
+#qrCodeContainer {
+  margin-top: 20px;
+}
+
+#downloadBtn {
+  display: none;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #f59e0b;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#downloadBtn:hover {
+  background: #d97706;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 30px;
+}
+
+legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.pet-container {
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+.pet-card {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.pet-card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.pet-info {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.pet-info li {
+  margin-bottom: 10px;
+}
+
+#contactBtn {
+  background: #22c55e;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#contactBtn:hover {
+  background: #16a34a;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .portada {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .portada p {
+    font-size: 1.2rem;
+  }
+}

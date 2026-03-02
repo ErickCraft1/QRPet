@@ -9,6 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("App/src/views"));
+app.use(express.static("App/public"));
 app.use("/uploads", express.static("App/src/models/local/uploads"));
 
 // Rutas

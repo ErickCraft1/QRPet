@@ -47,15 +47,41 @@ export const getPetById = (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html lang="es">
-    <head><meta charset="UTF-8"><title>${pet.petName} - QRPet</title></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${pet.petName} - QRPet</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
     <body>
+     <main class="pet-container">
+
+    <header>
       <h1>¡Encontraste a ${pet.petName}!</h1>
-      <figure>
-        ${pet.petImage ? `<img src="${pet.petImage}" alt="${pet.petName}" width="300">` : ""}
-      </figure>
-      <p>Raza: ${pet.petBreed}</p>
-      <p>Edad: ${pet.petAge} años</p>
-      <button id="contactBtn">Contactar al dueño por WhatsApp</button>
+      <p>Escaneaste para ayudarlo a volver a casa 🐾</p>
+    </header>
+
+    <section class="pet-card">
+
+      ${
+        pet.petImage
+          ? `<figure>
+            <img src="${pet.petImage}" alt="Foto de ${pet.petName}">
+           </figure>`
+          : ""
+      }
+
+      <ul class="pet-info">
+        <li><strong>Raza:</strong> ${pet.petBreed}</li>
+        <li><strong>Edad:</strong> ${pet.petAge} años</li>
+      </ul>
+
+      <button id="contactBtn">
+        Contactar al dueño por WhatsApp
+      </button>
+
+    </section>
+    </main>
       <script>
         document.getElementById("contactBtn").addEventListener("click", () => {
           navigator.geolocation.getCurrentPosition(

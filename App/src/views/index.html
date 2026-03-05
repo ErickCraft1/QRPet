@@ -77,13 +77,18 @@
         <fieldset>
           <legend>Información del dueño:</legend>
           <h2>Información de contacto del dueño:</h2>
-          <label for="ownerContact">Número:</label>
+          <br />
+          <label for="ownerName">Nombre:</label>
           <input
-            type="tel"
-            id="ownerContact"
-            name="ownerContact"
+            type="text"
+            id="ownerName"
+            name="ownerName"
             required
           /><br /><br />
+          <label for="ownerContact">Número:</label>
+          <input type="tel" id="ownerContact" name="ownerContact" required />
+          <span class="error-message">Solo se permite números</span>
+          <br />
         </fieldset>
 
         <input type="submit" value="Generar Código QR" />

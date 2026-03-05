@@ -24,7 +24,7 @@ export const saveQR = (req, res) => {
   // Leer archivo existente o crear array vacío
   let data = [];
   if (fs.existsSync(FILE_PATH)) {
-    data = JSON.parse(fs.readFileSync(FILE_PATH));
+    data = JSON.parse(fs.readFileSync(FILE_PATH, "utf-8"));
   }
 
   const petImage = req.file ? `/uploads/${req.file.filename}` : null;
@@ -104,4 +104,16 @@ export const getPetById = (req, res) => {
   `);
 };
 
+export const getDebugData = (req, res) => {
+  try {
+    if (!fs.existsSync(FILE_PATH)) {
+      return res.json([]);
+    }
+    const raw = fs.readFileSync(FILE_PATH, "utf-8");
+    const data = JSON.parse(raw);
+    return res.json(data);
+  } catch (err) {
+    return res.status(500).json({ error: "No se pudo leer/parsear pets.json" });
+  }
+};
 export const upload = multer({ storage });

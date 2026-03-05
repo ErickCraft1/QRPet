@@ -6,5 +6,13 @@
     "petAge": "3",
     "ownerContact": "916301638",
     "petImage": "/uploads/3c9262b0-6a13-41f4-aa6a-eb8dd82adef9.jpeg"
+  },
+  {
+    "id": "ddfc1dfb-87dd-4eae-b9ca-33ded1089eb8",
+    "petName": "Vianka",
+    "petBreed": "Naranja",
+    "petAge": "3",
+    "ownerContact": "916301638",
+    "petImage": "/uploads/7d718987-8c8f-4594-8918-ad2fa7d47e71.jpeg"
   }
 ]

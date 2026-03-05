@@ -1,6 +1,6 @@
 {
   "name": "qrpet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Este proyecto es un generador y lector de códigos QR para mascotas. Permite a los dueños de mascotas crear códigos QR personalizados que contienen información importante sobre sus mascotas, como su nombre, raza, edad, información de contacto del dueño y cualquier otra información relevante. Además, el proyecto incluye una función de lectura de códigos QR que permite a los usuarios escanear los códigos QR de las mascotas para acceder rápidamente a la información almacenada en ellos. Esto puede ser especialmente útil en caso de pérdida de la mascota, ya que cualquier persona que encuentre al animal puede escanear el código QR para obtener información de contacto y ayudar a reunificarlo con su dueño.",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "dependencies": {
     "cors": "2.8.6",
     "express": "5.2.1",
-    "multer": "2.1.0"
+    "multer": "2.1.0",
+    "zod": "4.3.6"
   }
 }

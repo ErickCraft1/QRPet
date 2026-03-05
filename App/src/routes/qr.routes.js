@@ -1,17 +1,12 @@
-import express from "express";
-import {
-  getIndex,
-  saveQR,
-  getPetById,
-  upload,
-  getDebugData,
-} from "../controllers/qr.controller.js";
+import { Router } from "express";
+import { PetController } from "../controllers/qr.controller.js";
+import { upload } from "../utils/multer.js";
 
-const router = express.Router();
+const qrRouter = Router();
 
-router.get("/", getIndex);
-router.post("/api/qr", upload.single("petImage"), saveQR);
-router.get("/mascota/:id", getPetById);
-router.get("/api/debug", getDebugData);
+qrRouter.get("/", PetController.getIndex);
+qrRouter.post("/api/qr", upload.single("petImage"), PetController.createPet);
+qrRouter.get("/mascota/:id", PetController.getPetById);
+qrRouter.get("/api/debug", PetController.getDebugData);
 
-export default router;
+export default qrRouter;

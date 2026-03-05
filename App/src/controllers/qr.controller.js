@@ -1,50 +1,36 @@
-import multer from "multer";
-import path from "path";
+import { PetModel } from "../models/local/qr.model.js";
+import { petSchema } from "../schemas/pet.schema.js";
 
-import fs from "fs";
-import crypto from "crypto";
-
-export const getIndex = (req, res) => {
-  res.sendFile("index.html", { root: "App/src/views" });
-};
-
-const storage = multer.diskStorage({
-  destination: "App/src/models/local/uploads",
-  filename: (req, file, cb) => {
-    const uniqueName = crypto.randomUUID() + path.extname(file.originalname);
-    cb(null, uniqueName);
-  },
-});
-
-const FILE_PATH = "App/src/models/local/pets.json";
-
-export const saveQR = (req, res) => {
-  const { petName, petBreed, petAge, ownerContact } = req.body;
-  const id = crypto.randomUUID();
-  // Leer archivo existente o crear array vacío
-  let data = [];
-  if (fs.existsSync(FILE_PATH)) {
-    data = JSON.parse(fs.readFileSync(FILE_PATH, "utf-8"));
+export class PetController {
+  static async getIndex(req, res) {
+    res.status(200).sendFile("index.html", { root: "App/src/views" });
   }
 
-  const petImage = req.file ? `/uploads/${req.file.filename}` : null;
+  static async createPet(req, res) {
+    try {
+      const validated = petSchema.parse({
+        ...req.body,
+        petImage: req.file ? `/uploads/${req.file.filename}` : null,
+      });
+      const newPet = await PetModel.createPet(validated);
+      res.status(201).json(newPet);
+    } catch (error) {
+      if (error.name === "ZodError") {
+        return res.status(400).json({ errors: error.errors });
+      }
+      res.status(500).json({ error: error.message });
+    }
+  }
 
-  //Agregar nueva mascota
-  data.push({ id, petName, petBreed, petAge, ownerContact, petImage });
+  static async getPetById(req, res) {
+    try {
+      const pet = await PetModel.getPetById({ id: req.params.id });
+      if (!pet) {
+        return res.status(404).json({ message: "Mascota no encontrada" });
+      }
 
-  // Guardar de nuevo en el archivo
-  fs.writeFileSync(FILE_PATH, JSON.stringify(data, null, 2));
-  res.json({ id, message: "Mascota guardada exitosamente" });
-};
-
-export const getPetById = (req, res) => {
-  const { id } = req.params;
-  const data = JSON.parse(fs.readFileSync(FILE_PATH, "utf-8"));
-  const pet = data.find((p) => p.id === id);
-  if (!pet) return res.status(404).json({ message: "Mascota no encontrada" });
-
-  // Enviar una página HTML con los datos de la mascota
-  res.send(`
+      // Enviar una página HTML con los datos de la mascota
+      res.send(`
     <!DOCTYPE html>
     <html lang="es">
 <head>
@@ -102,18 +88,19 @@ export const getPetById = (req, res) => {
     </body>
     </html>
   `);
-};
-
-export const getDebugData = (req, res) => {
-  try {
-    if (!fs.existsSync(FILE_PATH)) {
-      return res.json([]);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-    const raw = fs.readFileSync(FILE_PATH, "utf-8");
-    const data = JSON.parse(raw);
-    return res.json(data);
-  } catch (err) {
-    return res.status(500).json({ error: "No se pudo leer/parsear pets.json" });
   }
-};
-export const upload = multer({ storage });
+
+  static async getDebugData(req, res) {
+    const petData = await PetModel.getDebugData();
+    res.json(petData);
+    // try {
+    //   const petData = await PetModel.getDebugData();
+    //   res.json(petData);
+    // } catch (error) {
+    //   res.status(500).json({ error: error.message });
+    // }
+  }
+}
